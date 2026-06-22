@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode - warm cookie/cinema theme */
+    --background: 30 25% 98%;
+    --foreground: 25 15% 15%;
+    --card: 30 20% 96%;
+    --card-foreground: 25 15% 15%;
+    --popover: 30 20% 96%;
+    --popover-foreground: 25 15% 15%;
+    --primary: 25 45% 45%;
+    --primary-foreground: 30 25% 98%;
+    --secondary: 30 15% 90%;
+    --secondary-foreground: 25 15% 25%;
+    --muted: 30 10% 88%;
+    --muted-foreground: 25 10% 45%;
+    --accent: 35 70% 55%;
+    --accent-foreground: 30 25% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 85%;
+    --input: 30 15% 88%;
+    --ring: 25 45% 45%;
+    --radius: 0.75rem;
+    --sidebar-background: 30 20% 96%;
+    --sidebar-foreground: 25 15% 25%;
+    --sidebar-primary: 25 45% 45%;
+    --sidebar-primary-foreground: 30 25% 98%;
+    --sidebar-accent: 30 15% 90%;
+    --sidebar-accent-foreground: 25 15% 25%;
+    --sidebar-border: 30 15% 85%;
+    --sidebar-ring: 25 45% 45%;
+    
+    /* Custom CineCookie colors */
+    --cookie: 28 60% 55%;
+    --cookie-light: 30 50% 75%;
+    --cookie-dark: 25 50% 35%;
+    --cinema: 0 0% 12%;
+    --popcorn: 45 90% 60%;
+    --cozy: 20 40% 92%;
+  }
+
+  .dark {
+    /* Dark mode - cozy movie night */
+    --background: 0 0% 6%;
+    --foreground: 30 15% 92%;
+    --card: 0 0% 10%;
+    --card-foreground: 30 15% 92%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 30 15% 92%;
+    --primary: 28 60% 55%;
+    --primary-foreground: 0 0% 6%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 30 15% 85%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 30 10% 55%;
+    --accent: 35 70% 50%;
+    --accent-foreground: 0 0% 6%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 28 60% 55%;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 30 15% 85%;
+    --sidebar-primary: 28 60% 55%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 30 15% 85%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 28 60% 55%;
+    
+    --cookie: 28 60% 55%;
+    --cookie-light: 30 50% 75%;
+    --cookie-dark: 25 50% 35%;
+    --cinema: 0 0% 12%;
+    --popcorn: 45 90% 60%;
+    --cozy: 20 20% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-muted-foreground/20;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+}
+
+@layer components {
+  /* Pixel-art card style */
+  .pixel-card {
+    @apply rounded-xl border-2 border-border bg-card shadow-lg transition-all duration-200;
+    image-rendering: pixelated;
+  }
+  
+  .pixel-card:hover {
+    @apply shadow-xl border-primary/30;
+    transform: translateY(-2px);
+  }
+  
+  /* Pixel button style */
+  .pixel-btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-medium transition-all duration-200;
+    @apply bg-primary text-primary-foreground;
+    @apply hover:brightness-110 hover:scale-[1.02] active:scale-[0.98];
+    box-shadow: 0 4px 0 hsl(var(--primary) / 0.3);
+  }
+  
+  .pixel-btn:active {
+    box-shadow: 0 1px 0 hsl(var(--primary) / 0.3);
+    transform: translateY(3px) scale(0.98);
+  }
+  
+  .pixel-btn-secondary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-medium transition-all duration-200;
+    @apply bg-secondary text-secondary-foreground border-2 border-border;
+    @apply hover:bg-accent hover:text-accent-foreground hover:border-primary/30;
+    box-shadow: 0 4px 0 hsl(var(--border));
+  }
+  
+  .pixel-btn-secondary:active {
+    box-shadow: 0 1px 0 hsl(var(--border));
+    transform: translateY(3px);
+  }
+  
+  /* Floating pixel decoration */
+  .pixel-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Input styling */
+  .pixel-input {
+    @apply rounded-xl border-2 border-border bg-background px-4 py-3 text-foreground;
+    @apply focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20;
+    @apply transition-all duration-200 placeholder:text-muted-foreground;
+  }
+  
+  /* Connection indicator dot */
+  .connection-dot {
+    @apply w-2.5 h-2.5 rounded-full;
+  }
+  .connection-dot.connected {
+    @apply bg-emerald-500 animate-pulse-soft;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+  }
+  .connection-dot.connecting {
+    @apply bg-amber-400 animate-pulse;
+  }
+  .connection-dot.disconnected {
+    @apply bg-red-500;
+  }
+  
+  /* Chat message bubble */
+  .chat-bubble {
+    @apply rounded-2xl px-4 py-2.5 max-w-[80%] break-words;
+  }
+  .chat-bubble-own {
+    @apply bg-primary text-primary-foreground rounded-br-md;
+  }
+  .chat-bubble-other {
+    @apply bg-muted text-muted-foreground rounded-bl-md;
+  }
+  
+  /* Reaction popup animation */
+  .reaction-pop {
+    animation: pop 0.4s ease-out forwards;
+  }
+  
+  /* Movie night mode overlay */
+  .movie-night-overlay {
+    @apply pointer-events-none fixed inset-0 z-40;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+  }
+}
+
+@layer utilities {
+  .text-shadow-pixel {
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  }
+  
+  .pixel-border {
+    border-style: solid;
+    border-width: 2px;
+    border-image-slice: 2;
+  }
+  
+  .image-pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
